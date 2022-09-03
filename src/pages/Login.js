@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import {login} from '../firebase';
-
-
+import {useNavigate} from 'react-router-dom';
 export default function Login() {
 
-
+    const navigate = useNavigate(); 
+   
     const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 
@@ -12,8 +12,12 @@ const handleSubmit = async  (e) => {
     e.preventDefault();
    const user = await  login(email, password);
 
-   console.log(user);
-
+   if(user){
+    
+    navigate('/',{
+        replace:true
+    });
+   }
 }
 
     return (<div className=" flex justify-center">

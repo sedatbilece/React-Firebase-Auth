@@ -8,7 +8,7 @@ import Login from './pages/Login';
 
 function App() {  
   const location = useLocation().pathname.replace('/','');
-  console.log(location);
+  
   return (
     <div >
       <h1 className="text-3xl font-bold underline bg-pink-300 flex justify-center p-2 opacity-75">

@@ -5,8 +5,11 @@ import {
     getAuth, 
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    signOut
+    signOut,
+    onAuthStateChanged
 } from "firebase/auth";
+import store from './store';
+import{login as loginHandle,logout as logoutHandle} from './store/auth';
 
 const firebaseConfig = {
     apiKey: "AIzaSyC_DV4L-GXN7K4HV5ELVVd9ufN5xJ0VLLw",
@@ -53,5 +56,13 @@ export const logout = async () => {
     }
 }
 
+onAuthStateChanged(auth, (user) => {// auth state change listener 
+    if (user) {
+     store.dispatch(loginHandle(user))
+     
+    } else {
+      store.dispatch(logoutHandle())
+    }
+  });
 
 export default app; 
